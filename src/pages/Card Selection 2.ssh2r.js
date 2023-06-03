@@ -1,9 +1,138 @@
-// Velo API Reference: https://www.wix.com/velo/reference/api-overview/introduction
 import { explainJavaScriptCode} from 'backend/ai';
 import wixStorage from 'wix-storage';
 
-const charList = ['Panda', "Darth Vader", 'Spider-Man'];
-const powerList = ['Armed with a lightsaber', 'That can shoot flames from hand', 'Has magical powers'];
+const charList = [
+    "Abraham Lincoln",
+    "Barack Obama",
+    "George Washington",
+    "Donald Trump",
+    "John F. Kennedy",
+    "Superman",
+    "Batman",
+    "Spider-Man",
+    "Wonder Woman",
+    "Hulk",
+    "Iron Man",
+    "Black Widow",
+    "Captain America",
+    "Thor",
+    "Black Panther",
+    "Goku",
+    "Naruto Uzumaki",
+    "Monkey D. Luffy",
+    "Sailor Moon",
+    "Saitama",
+    "Walter White",
+    "Daenerys Targaryen",
+    "Sherlock Holmes",
+    "Jon Snow",
+    "Michael Scott",
+    "Lion",
+    "Tiger",
+    "Eagle",
+    "Gorilla",
+    "Elephant",
+    "Franklin D. Roosevelt",
+    "Thomas Jefferson",
+    "Ronald Reagan",
+    "George H. W. Bush",
+    "Bill Clinton",
+    "Captain Marvel",
+    "Wolverine",
+    "Green Lantern",
+    "Catwoman",
+    "Aquaman",
+    "Spider-Woman",
+    "Flash",
+    "Doctor Strange",
+    "Storm",
+    "Deadpool",
+    "Vegeta",
+    "Sasuke Uchiha",
+    "Edward Elric",
+    "Mikasa Ackerman",
+    "Light Yagami",
+    "Tyrion Lannister",
+    "Rick Grimes",
+    "Hannah Baker",
+    "Don Draper",
+    "Fiona Gallagher",
+    "Jaguar",
+    "Panther",
+    "Wolf",
+    "Grizzly Bear",
+    "Great White Shark",
+    "Theodore Roosevelt",
+    "Woodrow Wilson",
+    "Harry S. Truman",
+    "Jimmy Carter",
+    "Dwight D. Eisenhower",
+    "Harley Quinn",
+    "Green Arrow",
+    "Rogue",
+    "Lex Luthor",
+    "Doctor Doom",
+    "Hawkeye",
+    "Supergirl",
+    "Black Canary",
+    "Ant-Man",
+    "Jean Grey",
+    "Gon Freecss",
+    "Eren Yeager",
+    "Gintoki Sakata",
+    "Kaneki Ken",
+    "Lelouch Lamperouge",
+    "Tony Stark",
+    "Jon Snow",
+    "Michael Scott",
+    "Rick Sanchez",
+    "Eleven",
+    "Cheetah",
+    "Giraffe"
+];
+const powerList = [
+    "That has Flight",
+    "That has Superhuman Strength",
+    "That has Telekinesis",
+    "That has Invisibility",
+    "That has Teleportation",
+    "Armed with a Sword",
+    "Armed with a Shield",
+    "Armed with a Bow and Arrow",
+    "Armed with a Laser Gun",
+    "Armed with a Staff",
+    "That has Telepathy",
+    "That has Time Manipulation",
+    "That has Healing Factor",
+    "That has Fire Manipulation",
+    "That has Ice Powers",
+    "Armed with a Hammer",
+    "Armed with a Dagger",
+    "Armed with a Lightsaber",
+    "Armed with a Grappling Hook",
+    "Armed with an Energy Blaster",
+    "That has Super Speed",
+    "That has Shape-Shifting",
+    "That has Electrokinesis",
+    "That has Mind Control",
+    "That has Force Field Generation",
+    "Armed with a Katana",
+    "Armed with a Pistol",
+    "Armed with a Crossbow",
+    "Armed with a Grenade Launcher",
+    "Armed with a Sniper Rifle",
+    "That has Weather Control",
+    "That has X-ray Vision",
+    "That has Energy Absorption",
+    "That has Elasticity",
+    "That has Sonar Sense",
+    "Armed with a Chainsaw",
+    "Armed with a Rocket Launcher",
+    "Armed with a Boomerang",
+    "Armed with Nunchaku",
+    "Armed with a Machete"
+];
+
 const whiteCardText1 = $w('#wcText1');
 const whiteCardText2 = $w('#wcText2');
 const whiteCardText3 = $w('#wcText3');
@@ -11,6 +140,9 @@ const whiteCardText3 = $w('#wcText3');
 const blackCardText1 = $w('#bcText1');
 const blackCardText2 = $w('#bcText2');
 const blackCardText3 = $w('#bcText3');
+
+const powerSelectedText = $w('#powerSelectedText');
+const charSelectedText = $w('#charSelectedText');
 
 let whiteCard = "";
 let blackCard = "";
@@ -20,18 +152,46 @@ let selectedPower = "";
 
 let player2Choice = "";
 
+let wCard1Num = 0;
+let wCard2Num = 0;
+let wCard3Num = 0;
+let bCard1Num = 0;
+let bCard2Num = 0;
+let bCard3Num = 0;
+
+const generateUniqueNumbers = () => {
+    var numbers = [];
+  
+    while (numbers.length < 100) {
+      var randomNumber = Math.floor(Math.random() * 100);
+  
+      if (!numbers.includes(randomNumber)) {
+        numbers.push(randomNumber);
+      }
+    }
+      
+    wCard1Num = numbers[0];
+    wCard2Num = numbers[1];
+    wCard3Num = numbers[2];
+    bCard1Num = numbers[0];
+    bCard2Num = numbers[1];
+    bCard3Num = numbers[2];
+
+}
+
 $w.onReady(() => {
+    generateUniqueNumbers();
     displayCardData();
     $w('#nextPageBtn').hide();
 });
 
 const displayCardData = () => {
-	whiteCardText1.text = charList[0];
-    whiteCardText2.text = charList[1];
-    whiteCardText3.text = charList[2];
-    blackCardText1.text = powerList[0];
-    blackCardText2.text = powerList[1];
-    blackCardText3.text = powerList[2];
+	whiteCardText1.text = charList[wCard1Num];
+    whiteCardText2.text = charList[wCard2Num];
+    whiteCardText3.text = charList[wCard3Num];
+    blackCardText1.text = powerList[bCard1Num];
+    blackCardText2.text = powerList[bCard2Num];
+    blackCardText3.text = powerList[bCard3Num];
 }
 
 export function whiteCardClicked(event) {
@@ -45,6 +205,8 @@ export function whiteCardClicked(event) {
         selectedChar = charList[2];
         console.log(`Selected Char is: ${selectedChar}`);
     }
+
+    charSelectedText.text = `Character Selected: ${selectedChar}`;
 }
 
 export function blackCardClicked(event) {
@@ -58,14 +220,22 @@ export function blackCardClicked(event) {
         selectedPower = powerList[2];
         console.log(`Selected Char is: ${selectedPower}`);
     }
+
+    powerSelectedText.text = `Power Selected: ${selectedPower}`;
 }
 
 export async function handleSubmit(event) {
-    const code = `An anime style painting of ${selectedChar} ${selectedPower}`;
-	const res = await explainJavaScriptCode(code);
-    player2Choice = res;
-    console.log(`Player 2 URL: ${res}`);
-    $w('#button1').hide();
-    $w('#nextPageBtn').show();
-    wixStorage.session.setItem('player2Choice', player2Choice);   
+    if(selectedChar == "" || selectedPower == ""){
+        console.log("Please complete your card selection.");
+    } else {
+        $w('#button1').disable();
+        $w('#button1').label = "Loading...";
+        const code = `An anime style painting of ${selectedChar} ${selectedPower}`;
+        const res = await explainJavaScriptCode(code);
+        player2Choice = res;
+        console.log(`Player 2 URL: ${res}`);
+        $w('#button1').hide();
+        $w('#nextPageBtn').show();
+        wixStorage.session.setItem('player2Choice', player2Choice);
+    }
 }
