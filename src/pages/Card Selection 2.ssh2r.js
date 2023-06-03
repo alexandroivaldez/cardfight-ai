@@ -89,7 +89,7 @@ const charList = [
     "Eleven",
     "Cheetah",
     "Giraffe"
-];
+  ];
 const powerList = [
     "That has Flight",
     "That has Superhuman Strength",
@@ -130,8 +130,56 @@ const powerList = [
     "Armed with a Rocket Launcher",
     "Armed with a Boomerang",
     "Armed with Nunchaku",
-    "Armed with a Machete"
-];
+    "Armed with a Machete",
+    "That has Pyrokinesis",
+    "That has Hydrokinesis",
+    "That has Super Durability",
+    "That has Precognition",
+    "Armed with a Mace",
+    "Armed with a Whip",
+    "Armed with a Net",
+    "Armed with Brass Knuckles",
+    "That has Energy Projection",
+    "That has Animal Communication",
+    "That has Size Manipulation",
+    "That has Regeneration",
+    "Armed with Sai",
+    "Armed with a Flamethrower",
+    "Armed with a Bo Staff",
+    "Armed with a Battle Axe",
+    "That has Gravity Manipulation",
+    "That has Phasing",
+    "That has Technopathy",
+    "That has Poison Manipulation",
+    "Armed with a Morningstar",
+    "Armed with a Chainsaw Sword",
+    "Armed with Throwing Knives",
+    "Armed with a Whistle",
+    "That has Night Vision",
+    "That has Illusion Manipulation",
+    "That has Sound Manipulation",
+    "That has Acid Manipulation",
+    "Armed with a Trident",
+    "Armed with a Flamethrower Gauntlet",
+    "Armed with a Slingshot",
+    "Armed with a Cane",
+    "That has Probability Manipulation",
+    "That has Hypnosis",
+    "That has Earth Manipulation",
+    "That has Laser Vision",
+    "Armed with a Whip Sword",
+    "Armed with a Throwing Axe",
+    "Armed with a Taser",
+    "Armed with Brass Knuckles",
+    "That has Reality Warping",
+    "That has Sonic Scream",
+    "That has Plant Manipulation",
+    "That has Magnetic Manipulation",
+    "Armed with a Trident",
+    "Armed with a Bo Staff",
+    "Armed with a Bola",
+    "Armed with a Blow"
+]
 
 const whiteCardText1 = $w('#wcText1');
 const whiteCardText2 = $w('#wcText2');
@@ -162,8 +210,8 @@ let bCard3Num = 0;
 const generateUniqueNumbers = () => {
     var numbers = [];
   
-    while (numbers.length < 100) {
-      var randomNumber = Math.floor(Math.random() * 100);
+    while (numbers.length < 3) {
+      var randomNumber = Math.floor(Math.random() * 90);
   
       if (!numbers.includes(randomNumber)) {
         numbers.push(randomNumber);
@@ -196,13 +244,13 @@ const displayCardData = () => {
 
 export function whiteCardClicked(event) {
     if (event.target == $w('#whiteCard1')) {
-		selectedChar = charList[0];
+		selectedChar = charList[wCard1Num];
         console.log(`Selected Char is: ${selectedChar}`);
     } else if (event.target == $w('#whiteCard2')) {
-        selectedChar = charList[1];
+        selectedChar = charList[wCard2Num];
         console.log(`Selected Char is: ${selectedChar}`);
     } else {
-        selectedChar = charList[2];
+        selectedChar = charList[wCard3Num];
         console.log(`Selected Char is: ${selectedChar}`);
     }
 
@@ -211,13 +259,13 @@ export function whiteCardClicked(event) {
 
 export function blackCardClicked(event) {
     if (event.target == $w('#blackCard1')) {
-		selectedPower = powerList[0];
+		selectedPower = powerList[bCard1Num];
         console.log(`Selected Char is: ${selectedPower}`);
     } else if (event.target == $w('#blackCard2')) {
-        selectedPower = powerList[1];
+        selectedPower = powerList[bCard2Num];
         console.log(`Selected Char is: ${selectedPower}`);
     } else {
-        selectedPower = powerList[2];
+        selectedPower = powerList[bCard3Num];
         console.log(`Selected Char is: ${selectedPower}`);
     }
 
@@ -230,7 +278,7 @@ export async function handleSubmit(event) {
     } else {
         $w('#button1').disable();
         $w('#button1').label = "Loading...";
-        const code = `An anime style painting of ${selectedChar} ${selectedPower}`;
+        const code = `${selectedChar} ${selectedPower}, high-detail, dramatic lighting, digital art`;
         const res = await explainJavaScriptCode(code);
         player2Choice = res;
         console.log(`Player 2 URL: ${res}`);
