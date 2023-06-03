@@ -1,0 +1,21 @@
+import { getSecret } from 'wix-secrets-backend';
+
+const { Configuration, OpenAIApi} = require('openai');
+
+export async function explainJavaScriptCode(code) {
+    try {
+        const openaiAPIKey = await getSecret('OPENAI_API_KEY');
+        const configuration = new Configuration({
+            apiKey: openaiAPIKey,
+        });
+        const openai = new OpenAIApi(configuration);
+        const response = await openai.createImage({
+        prompt: `${code}`,
+        n: 1,
+        size: "1024x1024",
+        });
+        return response.data.data[0].url;
+    } catch (error) {
+        console.error(error);
+    }
+}
