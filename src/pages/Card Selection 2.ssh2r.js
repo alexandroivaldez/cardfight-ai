@@ -277,7 +277,7 @@ export async function handleSubmit(event) {
         console.log("Please complete your card selection.");
     } else {
         $w('#button1').disable();
-        $w('#button1').label = "Loading...";
+        $w('#button1').label = "Generating hero...";
         const code = `${selectedChar} ${selectedPower}, high-detail, dramatic lighting, digital art`;
         const res = await explainJavaScriptCode(code);
         player2Choice = res;
@@ -285,5 +285,6 @@ export async function handleSubmit(event) {
         $w('#button1').hide();
         $w('#nextPageBtn').show();
         wixStorage.session.setItem('player2Choice', player2Choice);
+        wixStorage.session.setItem('finalP2Choice', `${selectedChar} ${selectedPower}`);
     }
 }
