@@ -212,7 +212,7 @@ const generateUniqueNumbers = () => {
     var numbers = [];
   
     while (numbers.length < 3) {
-      var randomNumber = Math.floor(Math.random() * 90);
+      var randomNumber = Math.floor(Math.random() * 87);
   
       if (!numbers.includes(randomNumber)) {
         numbers.push(randomNumber);
